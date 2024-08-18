@@ -9,6 +9,11 @@ public class PlayerInputController : MonoBehaviour
 
     public Vector2 MovementInput { get; private set; }
 
+    void Start()
+    {
+        MovementInput = Vector2.zero;
+    }
+
     private void OnEnable()
     {
         if (_inputActions == null)
@@ -16,6 +21,7 @@ public class PlayerInputController : MonoBehaviour
             _inputActions = new PlayerControls();
             #region Movement
             _inputActions.Player.Movement.performed += ctx => { MovementInput = ctx.ReadValue<Vector2>(); };
+            _inputActions.Player.Movement.canceled += ctx => { MovementInput = Vector2.zero; };
             #endregion
         }
         _inputActions.Enable();

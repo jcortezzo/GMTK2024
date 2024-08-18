@@ -10,9 +10,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private GameObject planetGenerator;
 
-    [SerializeField]
-    private PlanetController planetController;
-
     private Rigidbody2D _rb;
 
     private Animator _animator;
@@ -37,14 +34,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float animationSpeed;
 
-    public Vector2 CoreToPlayer
-    {
-        get
-        {
-            var planet = planetController.GetClosestPlanetToPlayer();
-            return (this.transform.position - planet.transform.position).normalized;
-        }
-    }
+    // public Vector2 CoreToPlayer
+    // {
+    //     get
+    //     {
+    //         var planet = planetController.GetClosestPlanetToPlayer();
+    //         return (this.transform.position - planet.transform.position).normalized;
+    //     }
+    // }
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +54,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleMovement(float delta, Vector2 movement)
     {
-        this.transform.up = CoreToPlayer * this.transform.up.magnitude;
+        this.transform.up = (this.transform.position - planetGenerator.transform.position).normalized;
+        // this.transform.up = (planetGenerator.transform.position * this.transform.up.magnitude).normalized;
 
         // Keep original Y velocity
         Vector2 currentVelocityWorldSpace = _rb.velocity;
@@ -72,8 +70,8 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity = finalMovementWorldSpace;
     }
 
-    private void Jump()
-    {
-        _rb.AddForce(CoreToPlayer * jumpForce, ForceMode2D.Impulse);
-    }
+    // private void Jump()
+    // {
+    //     _rb.AddForce(CoreToPlayer * jumpForce, ForceMode2D.Impulse);
+    // }
 }

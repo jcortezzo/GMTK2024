@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     private PlayerInputController _inputHandler;
     private PlayerMovement _playerMovement;
 
+    protected Planet _currPlanet;
+
     // Start is called before the first frame update
     void Start()
     {
