@@ -54,7 +54,11 @@ public class PlayerMovement : MonoBehaviour
     public void HandleMovement(float delta, Vector2 movement)
     {
         // don't move while switching planets
-        if (_isPlanetRotateTween) return;
+        if (_isPlanetRotateTween)
+        {
+            Debug.Log("is rotating");
+            return;
+        }
 
         this.transform.up = (this.transform.position - _planet.transform.position).normalized;
 
@@ -75,15 +79,17 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Planet" && collision.gameObject != _planet && _playerManager.IsJumping && _canSwitchPlanet)
         {
+            var originalUp = _planet.transform.position - transform.position;
+
             Debug.Log($"Collied with planet {collision.name}");
             var newPlanet = collision.gameObject;
             _planet = newPlanet;
             _canSwitchPlanet = false;
 
-            Vector3 direction = newPlanet.transform.position - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            _planetRotationTween = transform.DORotate(new Vector3(0, 0, angle * 2), 1f, RotateMode.Fast);
-            // _planetRotationTween = transform.DORotateQuaternion(Quaternion.Euler(0, 0, angle), 1f);
+            Vector3 newUp = newPlanet.transform.position - transform.position;
+            float angle = Vector2.SignedAngle(originalUp, newUp);
+
+            _planetRotationTween = transform.DOLocalRotate(new Vector3(0, 0, transform.localEulerAngles.z + angle), 1f).SetEase(Ease.InOutFlash);
             _planetRotationTween.OnComplete(() =>
                 {
                     _planetRotationTween.Kill();
@@ -104,7 +110,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(transform.rotation.z);
+        // Debug.Log(transform.rotation.z);
     }
 
 }
