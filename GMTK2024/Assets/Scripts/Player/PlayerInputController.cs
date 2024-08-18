@@ -11,6 +11,8 @@ public class PlayerInputController : MonoBehaviour
 
     public Vector2 MovementInput { get; private set; }
 
+    public bool EatFlag { get; private set; }
+
     void Start()
     {
         _playerManager = GetComponent<Player>();
@@ -28,8 +30,8 @@ public class PlayerInputController : MonoBehaviour
             #endregion
 
             #region Eating
-            _inputActions.Player.Eat.performed += ctx => { _playerManager.EatEvent.Invoke(); };
-            _inputActions.Player.Eat.canceled += ctx => { _playerManager.StopEatEvent.Invoke(); };
+            _inputActions.Player.Eat.performed += ctx => { EatFlag = true; };
+            _inputActions.Player.Eat.canceled += ctx => { EatFlag = false; };
             #endregion
         }
         _inputActions.Enable();

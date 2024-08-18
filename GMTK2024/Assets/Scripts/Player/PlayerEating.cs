@@ -8,6 +8,8 @@ public class PlayerEating : MonoBehaviour
 
     private Coroutine _eatRoutine;
 
+    private Player _playerManager;
+
     [SerializeField]
     private float _eatFrequencyS;
 
@@ -19,7 +21,17 @@ public class PlayerEating : MonoBehaviour
 
     void Start()
     {
-        StopEating();
+        _playerManager = GetComponent<Player>();
+        _eatRoutine = StartCoroutine(EatRoutine());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (_playerManager.IsEating)
+        {
+
+        }
     }
 
     public void StartEating()
@@ -33,11 +45,17 @@ public class PlayerEating : MonoBehaviour
         _eatCollider = Instantiate(EAT_BOX_PREFAB, _eatBoxPosition.position, Quaternion.identity);
         while (true)
         {
-            _eatCollider.transform.position = _eatBoxPosition.position;
-            _eatCollider.SetActive(true);
-            yield return new WaitForSeconds(0.1f);
+            var playerAte = false;
+            if (_playerManager.IsEating)
+            {
+                _eatCollider.transform.position = _eatBoxPosition.position;
+                _eatCollider.SetActive(true);
+                playerAte = true;
+                yield return new WaitForSeconds(0.1f);
+            }
             _eatCollider.SetActive(false);
-            yield return new WaitForSeconds(_eatFrequencyS);
+            if (playerAte) yield return new WaitForSeconds(_eatFrequencyS);
+            yield return null;
         }
     }
 
@@ -47,9 +65,5 @@ public class PlayerEating : MonoBehaviour
         if (_eatRoutine != null) StopCoroutine(_eatRoutine);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 }
