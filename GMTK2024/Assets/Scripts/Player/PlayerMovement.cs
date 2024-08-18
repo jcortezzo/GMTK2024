@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -36,14 +37,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Player _playerManager;
     private bool _canSwitchPlanet;
-    // public Vector2 CoreToPlayer
-    // {
-    //     get
-    //     {
-    //         var planet = planetController.GetClosestPlanetToPlayer();
-    //         return (this.transform.position - planet.transform.position).normalized;
-    //     }
-    // }
+
+    private Tweener _planetRotationTween;
+    private bool _isPlanetRotateTween;
 
     // Start is called before the first frame update
     void Start()
@@ -57,8 +53,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleMovement(float delta, Vector2 movement)
     {
+        // don't move while switching planets
+        if (_isPlanetRotateTween) return;
+
         this.transform.up = (this.transform.position - _planet.transform.position).normalized;
-        // this.transform.up = (planetGenerator.transform.position * this.transform.up.magnitude).normalized;
 
         // Keep original Y velocity
         Vector2 currentVelocityWorldSpace = _rb.velocity;
@@ -73,28 +71,40 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity = finalMovementWorldSpace;
     }
 
-    // private void Jump()
-    // {
-    //     _rb.AddForce(CoreToPlayer * jumpForce, ForceMode2D.Impulse);
-    // }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Planet" && collision.gameObject != _planet && _playerManager.IsJumping && _canSwitchPlanet)
+        if (collision.gameObject.tag == "Planet" && collision.gameObject != _planet && _playerManager.IsJumping && _canSwitchPlanet)
         {
             Debug.Log($"Collied with planet {collision.name}");
             var newPlanet = collision.gameObject;
             _planet = newPlanet;
             _canSwitchPlanet = false;
+
+            Vector3 direction = newPlanet.transform.position - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            _planetRotationTween = transform.DORotate(new Vector3(0, 0, angle * 2), 1f, RotateMode.Fast);
+            // _planetRotationTween = transform.DORotateQuaternion(Quaternion.Euler(0, 0, angle), 1f);
+            _planetRotationTween.OnComplete(() =>
+                {
+                    _planetRotationTween.Kill();
+                    _isPlanetRotateTween = false;
+                }
+            );
+            _isPlanetRotateTween = true;
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             _canSwitchPlanet = true;
-        }   
+        }
+    }
+
+    void Update()
+    {
+        Debug.Log(transform.rotation.z);
     }
 
 }
