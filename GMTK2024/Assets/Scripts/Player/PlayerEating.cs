@@ -34,6 +34,9 @@ public class PlayerEating : MonoBehaviour
     private IEnumerator EatRoutine()
     {
         _eatCollider = Instantiate(EAT_BOX_PREFAB, _eatBoxPosition.position, Quaternion.identity);
+        var eatBox = _eatCollider.GetComponent<EatBox>();
+        eatBox.EatGroundEvent.AddListener(_playerManager.PlayerStat.EatGround);
+        //_eatCollider.GetComponent<EatBox>()?.EatGroundEvent.AddListener(_playerManager.PlayerStat.EatGround);
         while (true)
         {
             var playerAte = false;

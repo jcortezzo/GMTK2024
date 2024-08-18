@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public PlayerMovement _playerMovement;
     private PlayerEating _playerEating;
     private PlayerJump _playerJump;
-
+    public PlayerStat PlayerStat { get; private set; }
     protected Planet _currPlanet;
 
     public bool IsEating { get; private set; }
@@ -23,16 +23,16 @@ public class Player : MonoBehaviour
     {
         JumpSquat = new UnityEvent();
         JumpRelease = new UnityEvent();
+        PlayerStat = GetComponent<PlayerStat>();
+        _inputHandler = GetComponent<PlayerInputController>();
+        _playerMovement = GetComponent<PlayerMovement>();
+        _playerEating = GetComponent<PlayerEating>();
+        _playerJump = GetComponent<PlayerJump>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _inputHandler = GetComponent<PlayerInputController>();
-        _playerMovement = GetComponent<PlayerMovement>();
-        _playerEating = GetComponent<PlayerEating>();
-        _playerJump = GetComponent<PlayerJump>();
-
         JumpSquat.AddListener(_playerJump.JumpSquat);
         JumpRelease.AddListener(_playerJump.JumpRelease);
     }
