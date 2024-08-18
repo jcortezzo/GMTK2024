@@ -25,15 +25,6 @@ public class PlayerEating : MonoBehaviour
         _eatRoutine = StartCoroutine(EatRoutine());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (_playerManager.IsEating)
-        {
-
-        }
-    }
-
     public void StartEating()
     {
         StopEating();
@@ -48,8 +39,9 @@ public class PlayerEating : MonoBehaviour
             var playerAte = false;
             if (_playerManager.IsEating)
             {
-                _eatCollider.transform.position = _eatBoxPosition.position;
                 _eatCollider.SetActive(true);
+                _eatCollider.transform.position = _eatBoxPosition.position;
+                _eatCollider.transform.localScale = _playerManager.transform.localScale;
                 playerAte = true;
                 yield return new WaitForSeconds(0.1f);
             }
