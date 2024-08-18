@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     // TODO: Set planetGenerator based on distance from/force on player
     [SerializeField]
-    private GameObject planetGenerator;
+    private GameObject _planet;
 
     private Rigidbody2D _rb;
 
@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float animationSpeed;
 
+    private Player _playerManager;
+    private bool _canSwitchPlanet;
     // public Vector2 CoreToPlayer
     // {
     //     get
@@ -50,11 +52,12 @@ public class PlayerMovement : MonoBehaviour
         _animator = GetComponent<Animator>();
         // Default playback speed is 1, which is too fast for the idle animation
         _animator.speed = animationSpeed;
+        _playerManager = GetComponent<Player>();
     }
 
     public void HandleMovement(float delta, Vector2 movement)
     {
-        this.transform.up = (this.transform.position - planetGenerator.transform.position).normalized;
+        this.transform.up = (this.transform.position - _planet.transform.position).normalized;
         // this.transform.up = (planetGenerator.transform.position * this.transform.up.magnitude).normalized;
 
         // Keep original Y velocity
@@ -74,4 +77,24 @@ public class PlayerMovement : MonoBehaviour
     // {
     //     _rb.AddForce(CoreToPlayer * jumpForce, ForceMode2D.Impulse);
     // }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Planet" && collision.gameObject != _planet && _playerManager.IsJumping && _canSwitchPlanet)
+        {
+            Debug.Log($"Collied with planet {collision.name}");
+            var newPlanet = collision.gameObject;
+            _planet = newPlanet;
+            _canSwitchPlanet = false;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Ground")
+        {
+            _canSwitchPlanet = true;
+        }   
+    }
+
 }

@@ -33,6 +33,11 @@ public class PlayerInputController : MonoBehaviour
             _inputActions.Player.Eat.performed += ctx => { EatFlag = true; };
             _inputActions.Player.Eat.canceled += ctx => { EatFlag = false; };
             #endregion
+
+            #region Jump
+            _inputActions.Player.Jump.performed += ctx => { _playerManager.JumpSquat.Invoke(); };
+            _inputActions.Player.Jump.canceled += ctx => { _playerManager.JumpRelease.Invoke(); };
+            #endregion
         }
         _inputActions.Enable();
     }
