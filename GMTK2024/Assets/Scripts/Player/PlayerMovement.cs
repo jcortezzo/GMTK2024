@@ -107,10 +107,4 @@ public class PlayerMovement : MonoBehaviour
             _canSwitchPlanet = true;
         }
     }
-
-    void Update()
-    {
-        // Debug.Log(transform.rotation.z);
-    }
-
 }
