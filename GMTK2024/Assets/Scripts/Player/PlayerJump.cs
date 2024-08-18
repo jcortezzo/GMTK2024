@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerJump : MonoBehaviour
@@ -45,7 +46,7 @@ public class PlayerJump : MonoBehaviour
 
     public void JumpSquat()
     {
-        if (!IsGround) return;
+        if (!IsGround && !_jumpSquat) return;
         _jumpSquat = true;
     }
 
@@ -61,6 +62,8 @@ public class PlayerJump : MonoBehaviour
 
         _jumpSquat = false;
         _jumpSquatTimer = 0;
+
+        _isGroundTimer = 0;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -87,5 +90,10 @@ public class PlayerJump : MonoBehaviour
             yield return null;
         }
         yield return null;
+    }
+
+    void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }
