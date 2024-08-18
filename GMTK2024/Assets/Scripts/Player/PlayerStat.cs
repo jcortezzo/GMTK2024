@@ -12,7 +12,7 @@ public class PlayerStat : MonoBehaviour
     public int Level { get; private set; }
     private void Start()
     {
-        Level = 0;
+        Level = 1;
     }
     public void Damage(int amount)
     {
@@ -28,6 +28,7 @@ public class PlayerStat : MonoBehaviour
     private void Update()
     {
         var nextLevelGroundCount = GetNumberOfGroundForNextLevel();
+        Debug.Log(nextLevelGroundCount);
         if(GroundEaten >= nextLevelGroundCount)
         {
             LevelUp();
@@ -41,9 +42,13 @@ public class PlayerStat : MonoBehaviour
     }
     private int GetNumberOfGroundForNextLevel()
     {
+        var x = Level;
         // y = mx + b
         int b = 20;
         int m = 10;
-        return m * Level + b;
+        var y = m * Level + b;
+
+        // y = 60^2 - 100 + 60
+        return 60 * x * x - 100 * x + 60;
     }
 }

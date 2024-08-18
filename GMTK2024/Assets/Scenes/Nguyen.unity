@@ -307,11 +307,6 @@ MonoBehaviour:
   _playerStat: {fileID: 1259347498}
   _healthTMP: {fileID: 1063373673}
   _groundText: {fileID: 1469891496}
---- !u!4 &165818691 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2202899167238165780, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
-  m_PrefabInstance: {fileID: 1363174514186397753}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +319,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -399,11 +395,11 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -10.88, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 165818691}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &519420033
 MonoBehaviour:
@@ -425,6 +421,20 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65084040125d6ce4295e5b84a182219c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FollowRotation: 1
+  offset: 0
 --- !u!1 &1063373671
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,7 +589,7 @@ MonoBehaviour:
   _maxJumpForce: 20
   _minJumpForce: 5
   _maxJumpTime: 1
-  <IsGround>k__BackingField: 0
+  _coyoteTime: 0.75
 --- !u!114 &1259347498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,6 +604,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField: 10
   <GroundEaten>k__BackingField: 0
+  <Level>k__BackingField: 0
 --- !u!1 &1469891494
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,10 +881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2202899167238165780, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 519420032}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5094084224663815311, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
       insertIndex: 5
@@ -952,3 +960,4 @@ SceneRoots:
   - {fileID: 4918649}
   - {fileID: 155968022}
   - {fileID: 1728073889}
+  - {fileID: 519420032}
