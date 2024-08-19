@@ -83,6 +83,10 @@ public class PlayerMovement : MonoBehaviour
 
             Debug.Log($"Collied with planet {collision.name}");
             var newPlanet = collision.gameObject;
+
+            _planet.GetComponent<PointEffector2D>().enabled = false;
+            newPlanet.GetComponent<PointEffector2D>().enabled = true;
+
             _planet = newPlanet;
             _canSwitchPlanet = false;
 
