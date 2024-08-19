@@ -11,8 +11,8 @@ public class PlayerJump : MonoBehaviour
     private bool _jumpSquat;
     private float _jumpSquatTimer;
 
-    [field:SerializeField] public float MaxJumpForce; // 20
-    [field:SerializeField] public float MinJumpForce; // 5
+    [field: SerializeField] public float MaxJumpForce; // 20
+    [field: SerializeField] public float MinJumpForce; // 5
 
     [SerializeField] private float _maxJumpTime;
 
@@ -69,7 +69,7 @@ public class PlayerJump : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Core")
         {
             _isGroundTimer = _coyoteTime;
             HasJumped = false;
@@ -78,7 +78,7 @@ public class PlayerJump : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Core")
         {
             StartCoroutine(StartGroundTimer());
         }

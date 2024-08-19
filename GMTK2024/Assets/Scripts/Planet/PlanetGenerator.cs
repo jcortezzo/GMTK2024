@@ -11,6 +11,8 @@ public class PlanetGenerator : MonoBehaviour
     private GameObject CORE_TILE_PREFAB;
     [SerializeField]
     private GameObject DECORATION_PREFAB;
+    [SerializeField]
+    private GameObject PERSON_PREFAB;
 
     [Header("Planet Settings")]
     [SerializeField]
@@ -19,6 +21,8 @@ public class PlanetGenerator : MonoBehaviour
     private int NUM_LAYERS;
     [SerializeField]
     private float DECORATION_DENSITY;
+    [SerializeField]
+    private float POPULATION_DENSITY;
 
     [field: SerializeField]
     public float Radius { get; private set; }
@@ -27,6 +31,8 @@ public class PlanetGenerator : MonoBehaviour
 
     private IDictionary<int, ISet<GameObject>> _layers;
 
+    public ISet<Person> People { get; private set; }
+
     void Awake()
     {
         _layers = new Dictionary<int, ISet<GameObject>>();
@@ -34,6 +40,7 @@ public class PlanetGenerator : MonoBehaviour
         {
             _layers[i] = new HashSet<GameObject>();
         }
+        People = new HashSet<Person>();
     }
 
     private int CORE_LAYERS
@@ -84,23 +91,51 @@ public class PlanetGenerator : MonoBehaviour
             }
         }
 
-        // decorate
+        // decorate / population
+        var setLast = false;
         foreach (GameObject ground in _layers[NUM_LAYERS - 1])
         {
-            if (Random.value > DECORATION_DENSITY)
-            {
-                continue;
-            }
-            // rotation
-            Vector3 upDirection = (ground.transform.position - transform.position).normalized; // Assuming transform.position is the center of the planet
-            Quaternion rotation = Quaternion.FromToRotation(Vector3.up, upDirection);
-            // position
-            SpriteRenderer groundRenderer = ground.GetComponent<SpriteRenderer>();
-            SpriteRenderer decorationRenderer = DECORATION_PREFAB.GetComponent<SpriteRenderer>();
-            float buffer = 2f / groundRenderer.sprite.pixelsPerUnit;
-            Vector3 groundTopPosition = ground.transform.position + ground.transform.up * (groundRenderer.bounds.extents.y + decorationRenderer.bounds.extents.y - buffer);
-            Instantiate(DECORATION_PREFAB, groundTopPosition, rotation, ground.transform);
+            setLast = Decorate(ground, setLast);
+            AddPerson(ground);
         }
+    }
+
+    private bool Decorate(GameObject ground, bool setLast)
+    {
+        if (Random.value > DECORATION_DENSITY || setLast)
+        {
+            return false;
+        }
+        // rotation
+        Vector3 upDirection = (ground.transform.position - transform.position).normalized; // Assuming transform.position is the center of the planet
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, upDirection);
+        // position
+        SpriteRenderer groundRenderer = ground.GetComponent<SpriteRenderer>();
+        SpriteRenderer decorationRenderer = DECORATION_PREFAB.GetComponent<SpriteRenderer>();
+        float buffer = 2f / groundRenderer.sprite.pixelsPerUnit;
+        Vector3 groundTopPosition = ground.transform.position + ground.transform.up * (groundRenderer.bounds.extents.y + decorationRenderer.bounds.extents.y - buffer);
+        var decoration = Instantiate(DECORATION_PREFAB, groundTopPosition, rotation, null);
+        decoration.transform.parent = ground.transform;
+        return true;
+    }
+
+    private void AddPerson(GameObject ground)
+    {
+        if (Random.value > POPULATION_DENSITY)
+        {
+            return;
+        }
+        // rotation
+        Vector3 upDirection = (ground.transform.position - transform.position).normalized; // Assuming transform.position is the center of the planet
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.up, upDirection);
+        // position
+        SpriteRenderer groundRenderer = ground.GetComponent<SpriteRenderer>();
+        SpriteRenderer decorationRenderer = DECORATION_PREFAB.GetComponent<SpriteRenderer>();
+        float buffer = 2f / groundRenderer.sprite.pixelsPerUnit;
+        Vector3 groundTopPosition = ground.transform.position + ground.transform.up * (groundRenderer.bounds.extents.y + decorationRenderer.bounds.extents.y - buffer);
+        Person person = Instantiate(PERSON_PREFAB, groundTopPosition, rotation, null).GetComponent<Person>();
+        person.Planet = GetComponent<Planet>();
+        People.Add(person);
     }
 
     // Update is called once per frame

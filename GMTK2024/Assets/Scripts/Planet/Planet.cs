@@ -38,6 +38,16 @@ public class Planet : MonoBehaviour
         InitParticleSystem();
     }
 
+    public void FreezePeople()
+    {
+        _planetGenerator.People?.ToList().ForEach(p => p?.Freeze());
+    }
+
+    public void UnfreezePeople()
+    {
+        _planetGenerator.People?.ToList().ForEach(p => p?.Unfreeze());
+    }
+
     private void GenerateNeighborPlanets()
     {
         if (!AllowNeighborPlanetGeneration) return;

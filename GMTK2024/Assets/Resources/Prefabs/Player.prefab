@@ -44,13 +44,12 @@ GameObject:
   - component: {fileID: 867583880993797841}
   - component: {fileID: 3240716006983566371}
   - component: {fileID: -7023777823362809354}
-  - component: {fileID: 1211027230587705839}
   - component: {fileID: 8227544805752734354}
   - component: {fileID: 3700699940763991896}
   - component: {fileID: 3405965819342284981}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,27 +127,6 @@ MonoBehaviour:
   _eatBoxPosition: {fileID: 7643220167611068552}
   EAT_BOX_PREFAB: {fileID: 2669237376413300249, guid: 628c211aef6e7714584c1dc3eaebace8, type: 3}
   BONK_THRESHOLD: -0.6
---- !u!95 &1211027230587705839
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5094084224663815311}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0d1d2bf8940f5524f946898daff915ce, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &8227544805752734354
 SpriteRenderer:
   m_ObjectHideFlags: 0

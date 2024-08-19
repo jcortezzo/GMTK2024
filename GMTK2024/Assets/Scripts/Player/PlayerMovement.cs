@@ -83,14 +83,19 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Planet" && collision.gameObject != _currPlanet && _playerManager.IsJumping && _canSwitchPlanet)
         {
 
-            var originalUp = _currPlanet != null ? _currPlanet.transform.position - transform.position:
+            var originalUp = _currPlanet != null ? _currPlanet.transform.position - transform.position :
                                                     transform.up;
 
             Debug.Log($"Collied with planet {collision.name}");
             var newPlanet = collision.gameObject;
 
-            if(_currPlanet != null) _currPlanet.GetComponent<PointEffector2D>().enabled = false;
+            if (_currPlanet != null)
+            {
+                _currPlanet.GetComponent<PointEffector2D>().enabled = false;
+                _currPlanet.GetComponent<Planet>().FreezePeople();
+            }
             newPlanet.GetComponent<PointEffector2D>().enabled = true;
+            newPlanet.GetComponent<Planet>().UnfreezePeople();
 
             _currPlanet = newPlanet;
             _canSwitchPlanet = false;
@@ -116,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        _currPlanet.GetComponent<Planet>().FreezePeople();
         _currPlanet = null;
     }
 
@@ -125,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _canSwitchPlanet = true;
             collision.gameObject.GetComponentInParent<Planet>().PlayerOnPlanetEvent.Invoke();
+            _currPlanet?.GetComponent<Planet>()?.UnfreezePeople();
         }
     }
 }
