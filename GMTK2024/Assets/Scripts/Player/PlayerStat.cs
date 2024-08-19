@@ -1,6 +1,7 @@
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -13,13 +14,13 @@ public class PlayerStat : MonoBehaviour
     [field: SerializeField]
     public int Level { get; private set; }
     
-    public int MAX_LEVEL = 6;
-    public int[] GroundForNextLevel = { 20, 50, 100, 200, 500, 1000 };
-    public int[] CameraLevelUpScale = { 16, 14, 12, 10, 8, 6 };
-    public int[] MinJumpScale = { 5, 6, 7, 8, 9, 10 };
-    public int[] MaxJumpScale = { 20, 25, 30, 35, 40, 50 };
-    public int[] FontSizeMin = { 40, 40, 40, 60, 60, 60 };
-    public int[] FontSizeMax = { 60, 60, 60, 80, 80, 80 };
+    public int MAX_LEVEL = 7;
+    public int[] GroundForNextLevel = { 20, 100, 200, 500, 1000, 2000, 3000};
+    public int[] CameraLevelUpScale = { 16, 14, 12, 10, 8, 6, 5 };
+    public int[] MinJumpScale = { 5, 6, 7, 8, 9, 10, 11 };
+    public int[] MaxJumpScale = { 20, 25, 30, 35, 40, 50, 55 };
+    public int[] FontSizeMin = { 40, 40, 40, 60, 60, 60, 70 };
+    public int[] FontSizeMax = { 60, 60, 60, 80, 80, 80, 80 };
 
     private PixelPerfectCamera ppCamera;
     private PlayerJump playerJump;
@@ -47,6 +48,7 @@ public class PlayerStat : MonoBehaviour
     private void Update()
     {
         var nextLevelGroundCount = GetNumberOfGroundForNextLevel();
+        if (nextLevelGroundCount == -1) return;
         if (GroundEaten >= nextLevelGroundCount && Level - 1 < MAX_LEVEL)
         {
             LevelUp();
@@ -67,12 +69,14 @@ public class PlayerStat : MonoBehaviour
     }
     private void LevelUpCamera()
     {
+        if (Level >= MAX_LEVEL) return;
         var scale = CameraLevelUpScale[Level];
         DOTween.To(() => ppCamera.assetsPPU, x => ppCamera.assetsPPU = x, scale, 0.5f);
     }
 
     private void LevelUpJump()
     {
+        if (Level >= MAX_LEVEL) return;
         var minJumpVal = MinJumpScale[Level];
         var maxJumpVal = MaxJumpScale[Level];
         playerJump.MinJumpForce = minJumpVal;
@@ -82,11 +86,13 @@ public class PlayerStat : MonoBehaviour
 
     private void LevelUpText()
     {
+        if (Level >= MAX_LEVEL) return;
         playerTextSpawner.MinTextSize = FontSizeMin[Level];
         playerTextSpawner.MaxTextSize = FontSizeMax[Level];
     }
     private int GetNumberOfGroundForNextLevel()
     {
+        if (Level >= MAX_LEVEL) return -1;
         var x = Level - 1;
         return GroundForNextLevel[x];
     }

@@ -23,6 +23,8 @@ public class PlanetGenerator : MonoBehaviour
     private float DECORATION_DENSITY;
     [SerializeField]
     private float POPULATION_DENSITY;
+    [SerializeField]
+    private GameGlobal _gameGlobalSetting;
 
     [field: SerializeField]
     public float Radius { get; private set; }
@@ -88,6 +90,7 @@ public class PlanetGenerator : MonoBehaviour
                 GameObject groundTile = Instantiate(!isCoreLayer ? GROUND_TILE_PREFAB : CORE_TILE_PREFAB, position, rotation, this.transform);
                 stackList[spoke].Push(groundTile);
                 _layers[layer].Add(groundTile);
+                _gameGlobalSetting.GroundInUniverse++;
             }
         }
 

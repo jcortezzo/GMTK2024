@@ -73,6 +73,7 @@ MonoBehaviour:
   NUM_LAYERS: 18
   DECORATION_DENSITY: 0.2
   POPULATION_DENSITY: 0.3
+  _gameGlobalSetting: {fileID: 11400000, guid: ee1a4e0dbe6d79949b7d91c996e7dbce, type: 2}
   <Radius>k__BackingField: 10
   <CoreRatio>k__BackingField: 0.2
   <GeneratePlanetOnStart>k__BackingField: 0
