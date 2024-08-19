@@ -26,14 +26,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Player Settings")]
     [SerializeField]
     private float speed;
-    [SerializeField]
-    private float jumpForce;
-    [SerializeField]
-    private float maxSpeed;
-    [SerializeField]
-    private float laserDuration;
-    [SerializeField]
-    private float laserLength;
 
     [Header("Animation Settings")]
     [SerializeField]
@@ -130,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             _canSwitchPlanet = true;
+            collision.gameObject.GetComponentInParent<Planet>().PlayerOnPlanetEvent.Invoke();
         }
     }
 }

@@ -11,12 +11,10 @@ public class PlayerJump : MonoBehaviour
     private bool _jumpSquat;
     private float _jumpSquatTimer;
 
-    [SerializeField]
-    private float _maxJumpForce;
-    [SerializeField]
-    private float _minJumpForce;
-    [SerializeField]
-    private float _maxJumpTime;
+    [field:SerializeField] public float MaxJumpForce; // 20
+    [field:SerializeField] public float MinJumpForce; // 5
+
+    [SerializeField] private float _maxJumpTime;
 
     [field: SerializeField]
     public bool IsGround
@@ -57,7 +55,7 @@ public class PlayerJump : MonoBehaviour
         if (_jumpSquatTimer <= 0) return;
 
         var jumpRatio = Mathf.Min(1f, _jumpSquatTimer / _maxJumpTime);
-        var jumpForce = (_maxJumpForce - _minJumpForce) * jumpRatio + _minJumpForce;
+        var jumpForce = (MaxJumpForce - MinJumpForce) * jumpRatio + MinJumpForce;
         //Debug.Log($"Jump force {jumpForce}, jump ratio: {jumpRatio}");
         var jumpVec = _playerManager.transform.up;
         _rb.AddForce(jumpVec * jumpForce, ForceMode2D.Impulse);

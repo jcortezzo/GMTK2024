@@ -50,6 +50,11 @@ public class CameraFollow : MonoBehaviour
         Vector3 localPos = new Vector3(PlayerPosLocal.x, PlayerPosLocal.y - offset, PlayerPosLocal.z);
         Vector3 worldPos = player.transform.TransformPoint(localPos);
         transform.position = new Vector3(worldPos.x, worldPos.y, transform.position.z);
-        if(FollowRotation) transform.rotation = Quaternion.Lerp(transform.rotation, PlayerRotation, 0.1f);
+        if (FollowRotation)
+        {
+            var playerRotationEurler = PlayerRotation.eulerAngles;
+            var playerRotation = Quaternion.Euler(0, 0, playerRotationEurler.z);
+            transform.rotation = Quaternion.Lerp(transform.rotation, playerRotation, 0.1f);
+        }
     }
 }

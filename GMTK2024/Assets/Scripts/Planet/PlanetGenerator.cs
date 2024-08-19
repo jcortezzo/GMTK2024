@@ -30,26 +30,29 @@ public class PlanetGenerator : MonoBehaviour
     private Stack<GameObject>[] stackList;
     private float DEGREES_IN_PLANET = 360f;
 
+    [field: SerializeField]
+    public bool GeneratePlanetOnStart { get; set; }
     // Start is called before the first frame update
     void Start()
     {
-        GeneratePlanet();
+        if(GeneratePlanetOnStart) GeneratePlanet(Radius, NUM_SPOKES, NUM_LAYERS);
     }
 
-    public void GeneratePlanet()
+    public void GeneratePlanet(float radius, int numSpokes, int numLayers)
     {
-        stackList = new Stack<GameObject>[NUM_SPOKES];
+        stackList = new Stack<GameObject>[numSpokes];
         for (int i = 0; i < stackList.Length; i++)
         {
             stackList[i] = new Stack<GameObject>();
         }
-        for (int layer = 0; layer < NUM_LAYERS; layer++)
+        for (int layer = 0; layer < numLayers; layer++)
         {
             bool isCoreLayer = layer < CORE_LAYERS;
-            float currRadius = (Radius / NUM_LAYERS) * layer;
-            for (int spoke = 0; spoke < NUM_SPOKES; spoke++)
+
+            float currRadius = (radius / numLayers) * layer;
+            for (int spoke = 0; spoke < numSpokes; spoke++)
             {
-                float theta = (DEGREES_IN_PLANET / NUM_SPOKES) * spoke;
+                float theta = (DEGREES_IN_PLANET / numSpokes) * spoke;
                 theta *= Mathf.Deg2Rad;
                 float x = Mathf.Cos(theta) * currRadius;
                 float y = Mathf.Sin(theta) * currRadius;
