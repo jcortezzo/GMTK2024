@@ -42,7 +42,7 @@ public class PlayerStat : MonoBehaviour
     private void Update()
     {
         var nextLevelGroundCount = GetNumberOfGroundForNextLevel();
-        if (GroundEaten >= nextLevelGroundCount && Level < MAX_LEVEL)
+        if (GroundEaten >= nextLevelGroundCount && Level - 1 < MAX_LEVEL)
         {
             LevelUp();
         }

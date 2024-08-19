@@ -82,12 +82,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "Planet" && collision.gameObject != _currPlanet && _playerManager.IsJumping && _canSwitchPlanet)
         {
-            var originalUp = _currPlanet.transform.position - transform.position;
+
+            var originalUp = _currPlanet != null ? _currPlanet.transform.position - transform.position:
+                                                    transform.up;
 
             Debug.Log($"Collied with planet {collision.name}");
             var newPlanet = collision.gameObject;
 
-            _currPlanet.GetComponent<PointEffector2D>().enabled = false;
+            if(_currPlanet != null) _currPlanet.GetComponent<PointEffector2D>().enabled = false;
             newPlanet.GetComponent<PointEffector2D>().enabled = true;
 
             _currPlanet = newPlanet;

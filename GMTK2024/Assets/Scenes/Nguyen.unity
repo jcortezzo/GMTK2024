@@ -980,6 +980,8 @@ MonoBehaviour:
   MAX_LEVEL: 6
   GroundForNextLevel: 1400000064000000c800000090010000ee020000e8030000
   CameraLevelUpScale: 100000000e0000000c0000000a0000000800000006000000
+  MinJumpScale: 05000000060000000700000008000000090000000a000000
+  MaxJumpScale: 14000000190000001e000000230000002800000032000000
 --- !u!1 &1469891494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1274,6 +1276,10 @@ PrefabInstance:
       objectReference: {fileID: 95406142}
     - target: {fileID: 3240716006983566371, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
       propertyPath: _planet
+      value: 
+      objectReference: {fileID: 95406142}
+    - target: {fileID: 3240716006983566371, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
+      propertyPath: _currPlanet
       value: 
       objectReference: {fileID: 95406142}
     - target: {fileID: 3240716006983566371, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
