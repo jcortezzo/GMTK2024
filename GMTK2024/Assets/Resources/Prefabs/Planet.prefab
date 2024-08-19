@@ -50,6 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2316a72ca7afc194a91eb897a3331717, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerOnPlanetEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &801425269493458839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,11 +68,14 @@ MonoBehaviour:
   GROUND_TILE_PREFAB: {fileID: 2674713971603107932, guid: cac94f595416f394f8557677e3da3ae9, type: 3}
   CORE_TILE_PREFAB: {fileID: 2674713971603107932, guid: 3df4de2403fe86a479f755367e63221f, type: 3}
   DECORATION_PREFAB: {fileID: 3539224361767754966, guid: 42199a4b2e57ee44ab5376a1a9b5b198, type: 3}
+  PERSON_PREFAB: {fileID: 6894276921955938958, guid: 5b3f504ffa7177843aa51357d855fb81, type: 3}
   NUM_SPOKES: 64
   NUM_LAYERS: 18
   DECORATION_DENSITY: 0.2
+  POPULATION_DENSITY: 0.1
   <Radius>k__BackingField: 10
   <CoreRatio>k__BackingField: 0.2
+  <GeneratePlanetOnStart>k__BackingField: 0
 --- !u!58 &2546388146433021384
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -116,7 +122,7 @@ PointEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 311
   m_ForceMagnitude: -25
   m_ForceVariation: 0
   m_DistanceScale: 1
