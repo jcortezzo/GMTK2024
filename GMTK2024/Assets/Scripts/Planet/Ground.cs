@@ -25,7 +25,9 @@ public class Ground : MonoBehaviour
                 SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
                 if (spriteRenderer != null)
                 {
-                    collider.size = spriteRenderer.bounds.size;
+                    Vector2 spriteSize = spriteRenderer.sprite.bounds.size;
+                    collider.size = spriteSize * 0.9f; // Scale down slightly to fit better
+                    collider.offset = new Vector2(0, spriteSize.y * 0.1f); // Adjust the offset if needed
                     collider.direction = spriteRenderer.bounds.size.x > spriteRenderer.bounds.size.y
                         ? CapsuleDirection2D.Horizontal
                         : CapsuleDirection2D.Vertical;

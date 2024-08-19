@@ -111,10 +111,6 @@ MonoBehaviour:
   _currPlanet: {fileID: 0}
   laserPrefab: {fileID: 0}
   speed: 5
-  jumpForce: 10
-  maxSpeed: 10
-  laserDuration: 0.1
-  laserLength: 0.1
   animationSpeed: 1
 --- !u!114 &-7023777823362809354
 MonoBehaviour:
@@ -191,8 +187,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 282228279
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -1061460281, guid: 1b659b9289059bc45a8543d7d752ee07, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
