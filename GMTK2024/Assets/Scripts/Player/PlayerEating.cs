@@ -10,6 +10,7 @@ public class PlayerEating : MonoBehaviour
     private Coroutine _eatRoutine;
 
     private Player _playerManager;
+    private TextSpawner textBubble;
 
     [SerializeField]
     private float _eatFrequencyS;
@@ -26,7 +27,9 @@ public class PlayerEating : MonoBehaviour
     void Start()
     {
         _playerManager = GetComponent<Player>();
+        textBubble = GetComponent<TextSpawner>();
         _eatRoutine = StartCoroutine(EatRoutine());
+        
     }
 
     public void StartEating()
@@ -40,12 +43,14 @@ public class PlayerEating : MonoBehaviour
         _eatCollider = Instantiate(EAT_BOX_PREFAB, _eatBoxPosition.position, Quaternion.identity);
         var eatBox = _eatCollider.GetComponent<EatBox>();
         eatBox.EatGroundEvent.AddListener(_playerManager.PlayerStat.EatGround);
+
         //_eatCollider.GetComponent<EatBox>()?.EatGroundEvent.AddListener(_playerManager.PlayerStat.EatGround);
         while (true)
         {
             var playerAte = false;
             if (_playerManager.IsEating)
             {
+                textBubble.SpawnRandomText();
                 _eatCollider.SetActive(true);
                 _eatCollider.transform.position = _eatBoxPosition.position;
                 _eatCollider.transform.localScale = _playerManager.transform.localScale;
@@ -73,7 +78,7 @@ public class PlayerEating : MonoBehaviour
             foreach (ContactPoint2D point in collision.contacts)
             {
                 var dot = Vector2.Dot(point.normal, this.transform.up);
-                Debug.Log(dot);
+                //Debug.Log(dot);
                 if (dot <= BONK_THRESHOLD)
                 {
                     _playerManager.PlayerStat.EatGround();

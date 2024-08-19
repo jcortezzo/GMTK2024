@@ -415,6 +415,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 801425269493458839, guid: 06faa2b1b805ab744b97fc10319d9483, type: 3}
+      propertyPath: NUM_SPOKES
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 801425269493458839, guid: 06faa2b1b805ab744b97fc10319d9483, type: 3}
       propertyPath: <GeneratePlanetOnStart>k__BackingField
       value: 1
       objectReference: {fileID: 0}
@@ -982,6 +986,23 @@ MonoBehaviour:
   CameraLevelUpScale: 100000000e0000000c0000000a0000000800000006000000
   MinJumpScale: 05000000060000000700000008000000090000000a000000
   MaxJumpScale: 14000000190000001e000000230000002800000032000000
+--- !u!114 &1259347508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259347480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc9e72f525a32842b91d88567074244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TextPrefab: {fileID: 7088575454232706248, guid: afda26fdd05778e4e9bab3e11c5d1fa4, type: 3}
+  TextList:
+  - NOm NOm
+  minTextSize: 40
+  maxTextSize: 60
 --- !u!1 &1469891494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1209,7 +1230,7 @@ Transform:
   m_GameObject: {fileID: 1992953371}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.6, y: -108.6, z: 0}
+  m_LocalPosition: {x: 34.6, y: -63.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1304,6 +1325,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5094084224663815311, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
       insertIndex: 6
       addedObject: {fileID: 1259347498}
+    - targetCorrespondingSourceObject: {fileID: 5094084224663815311, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
+      insertIndex: 7
+      addedObject: {fileID: 1259347508}
   m_SourcePrefab: {fileID: 100100000, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
 --- !u!1001 &3255919860026406326
 PrefabInstance:
