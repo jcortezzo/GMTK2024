@@ -15,8 +15,9 @@ public class Player : MonoBehaviour
     public bool IsEating { get; private set; }
     public UnityEvent JumpSquat { get; private set; }
     public UnityEvent JumpRelease { get; private set; }
-    public bool IsJumping {
-        get { return !_playerJump.IsGround; }
+    public bool IsJumping
+    {
+        get { return !_playerJump.IsGround && _playerJump.HasJumped; }
     }
 
     private void Awake()

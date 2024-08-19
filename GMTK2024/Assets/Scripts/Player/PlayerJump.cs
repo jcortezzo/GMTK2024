@@ -28,6 +28,8 @@ public class PlayerJump : MonoBehaviour
     private float _coyoteTime;
     private float _isGroundTimer;
 
+    public bool HasJumped { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +48,7 @@ public class PlayerJump : MonoBehaviour
 
     public void JumpSquat()
     {
-        if (!IsGround && !_jumpSquat) return;
+        if (!IsGround && !_jumpSquat && !HasJumped) return;
         _jumpSquat = true;
     }
 
@@ -64,6 +66,7 @@ public class PlayerJump : MonoBehaviour
         _jumpSquatTimer = 0;
 
         _isGroundTimer = 0;
+        HasJumped = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -71,6 +74,7 @@ public class PlayerJump : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             _isGroundTimer = _coyoteTime;
+            HasJumped = false;
         }
     }
 
