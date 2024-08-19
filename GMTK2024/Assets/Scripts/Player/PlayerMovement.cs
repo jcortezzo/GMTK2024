@@ -56,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
         // don't move while switching planets
         if (_isPlanetRotateTween)
         {
-            Debug.Log("is rotating");
             return;
         }
 
