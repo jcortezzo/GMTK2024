@@ -37,14 +37,14 @@ public class Ground : MonoBehaviour
         }
     }
 
-    void OnBecameInvisible()
-    {
-        gameObject.SetActive(false);
-    }
+    //void OnBecameInvisible()
+    //{
+    //    gameObject.SetActive(false);
+    //}
 
-    void OnBecameVisible()
-    {
-        gameObject.SetActive(true);
-    }
+    //void OnBecameVisible()
+    //{
+    //    gameObject.SetActive(true);
+    //}
 
 }

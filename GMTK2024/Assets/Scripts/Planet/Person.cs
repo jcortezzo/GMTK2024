@@ -108,6 +108,7 @@ public class Person : MonoBehaviour
         {
             StopCoroutine(_changeStateRoutine);
         }
+        if (!this.gameObject.scene.isLoaded) return;
         var splat = Instantiate(SPLAT_PREFAB, transform.position, Quaternion.Euler(0, 0, Random.Range(0f, 360f)), null);
         Destroy(splat.gameObject, 30f);
     }
