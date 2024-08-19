@@ -56,7 +56,7 @@ public class PlayerJump : MonoBehaviour
 
         var jumpRatio = Mathf.Min(1f, _jumpSquatTimer / _maxJumpTime);
         var jumpForce = (_maxJumpForce - _minJumpForce) * jumpRatio + _minJumpForce;
-        Debug.Log($"Jump force {jumpForce}, jump ratio: {jumpRatio}");
+        //Debug.Log($"Jump force {jumpForce}, jump ratio: {jumpRatio}");
         var jumpVec = _playerManager.transform.up;
         _rb.AddForce(jumpVec * jumpForce, ForceMode2D.Impulse);
 
