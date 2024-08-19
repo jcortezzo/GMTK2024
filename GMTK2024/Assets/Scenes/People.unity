@@ -941,68 +941,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063373671}
   m_CullTransparentMesh: 1
---- !u!1 &1259347480 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5094084224663815311, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
+--- !u!114 &1259347498 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2804442458136819707, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
   m_PrefabInstance: {fileID: 1363174514186397753}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1259347489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259347480}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 736c270fad1fd62499c4b95943263437, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxJumpForce: 20
-  MinJumpForce: 5
-  _maxJumpTime: 1
-  _coyoteTime: 0.75
---- !u!114 &1259347498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259347480}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c73f97486e11ab9488dcd413dde6d6f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 10
-  <GroundEaten>k__BackingField: 0
-  <Level>k__BackingField: 0
-  MAX_LEVEL: 6
-  GroundForNextLevel: 1400000064000000c800000090010000ee020000e8030000
-  CameraLevelUpScale: 100000000e0000000c0000000a0000000800000006000000
-  MinJumpScale: 05000000060000000700000008000000090000000a000000
-  MaxJumpScale: 14000000190000001e000000230000002800000032000000
---- !u!95 &1259347508
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259347480}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: bb7ab69c0fac29a4bba6820523e324a8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1469891494
 GameObject:
   m_ObjectHideFlags: 0
@@ -1287,47 +1236,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2202899167238165780, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3240716006983566371, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
-      propertyPath: planet
-      value: 
-      objectReference: {fileID: 95406142}
-    - target: {fileID: 3240716006983566371, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
-      propertyPath: _planet
-      value: 
-      objectReference: {fileID: 95406142}
     - target: {fileID: 3240716006983566371, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
       propertyPath: _currPlanet
-      value: 
-      objectReference: {fileID: 95406142}
-    - target: {fileID: 3240716006983566371, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
-      propertyPath: planetGenerator
       value: 
       objectReference: {fileID: 95406142}
     - target: {fileID: 5094084224663815311, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 5463150971192099156, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
-      propertyPath: _playerMovement
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5094084224663815311, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
-      insertIndex: 5
-      addedObject: {fileID: 1259347489}
-    - targetCorrespondingSourceObject: {fileID: 5094084224663815311, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
-      insertIndex: 6
-      addedObject: {fileID: 1259347498}
-    - targetCorrespondingSourceObject: {fileID: 5094084224663815311, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1259347508}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7cd9a32ab7ffefc408af8da34c799bbf, type: 3}
 --- !u!1001 &3255919860026406326
 PrefabInstance:
