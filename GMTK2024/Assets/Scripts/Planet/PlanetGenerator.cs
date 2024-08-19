@@ -85,10 +85,12 @@ public class PlanetGenerator : MonoBehaviour
         }
 
         // decorate
+        var setLast = false;
         foreach (GameObject ground in _layers[NUM_LAYERS - 1])
         {
-            if (Random.value > DECORATION_DENSITY)
+            if (Random.value > DECORATION_DENSITY || setLast)
             {
+                setLast = false;
                 continue;
             }
             // rotation
@@ -101,6 +103,8 @@ public class PlanetGenerator : MonoBehaviour
             Vector3 groundTopPosition = ground.transform.position + ground.transform.up * (groundRenderer.bounds.extents.y + decorationRenderer.bounds.extents.y - buffer);
             Instantiate(DECORATION_PREFAB, groundTopPosition, rotation, ground.transform);
         }
+
+        setLast = true;
     }
 
     // Update is called once per frame
