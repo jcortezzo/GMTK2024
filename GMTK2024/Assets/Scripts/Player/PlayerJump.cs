@@ -48,7 +48,7 @@ public class PlayerJump : MonoBehaviour
 
     public void JumpSquat()
     {
-        if (!IsGround && !_jumpSquat && !HasJumped) return;
+        if (!IsGround && !_jumpSquat && HasJumped) return;
         _jumpSquat = true;
     }
 
