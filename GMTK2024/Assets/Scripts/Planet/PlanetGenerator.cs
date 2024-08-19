@@ -4,20 +4,37 @@ using UnityEngine;
 
 public class PlanetGenerator : MonoBehaviour
 {
+    [Header("Prefabs")]
     [SerializeField]
     private GameObject GROUND_TILE_PREFAB;
     [SerializeField]
     private GameObject CORE_TILE_PREFAB;
+    [SerializeField]
+    private GameObject DECORATION_PREFAB;
+
+    [Header("Planet Settings")]
+    [SerializeField]
+    private int NUM_SPOKES;
+    [SerializeField]
+    private int NUM_LAYERS;
+    [SerializeField]
+    private float DECORATION_DENSITY;
 
     [field: SerializeField]
     public float Radius { get; private set; }
     [field: SerializeField]
     public float CoreRatio { get; private set; }
 
-    [SerializeField]
-    private int NUM_SPOKES;
-    [SerializeField]
-    private int NUM_LAYERS;
+    private IDictionary<int, ISet<GameObject>> _layers;
+
+    void Awake()
+    {
+        _layers = new Dictionary<int, ISet<GameObject>>();
+        for (int i = 0; i < NUM_LAYERS; i++)
+        {
+            _layers[i] = new HashSet<GameObject>();
+        }
+    }
 
     private int CORE_LAYERS
     {
@@ -35,7 +52,7 @@ public class PlanetGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(GeneratePlanetOnStart) GeneratePlanet(Radius, NUM_SPOKES, NUM_LAYERS);
+        if (GeneratePlanetOnStart) GeneratePlanet(Radius, NUM_SPOKES, NUM_LAYERS);
     }
 
     public void GeneratePlanet(float radius, int numSpokes, int numLayers)
@@ -59,9 +76,30 @@ public class PlanetGenerator : MonoBehaviour
 
                 Vector2 worldPos = new Vector2(x, y);
                 Vector2 position = worldPos + (Vector2)transform.position;
-                GameObject groundTile = Instantiate(!isCoreLayer ? GROUND_TILE_PREFAB : CORE_TILE_PREFAB, position, Quaternion.identity, this.transform);
+                Vector3 upDirection = (position - new Vector2(transform.position.x, transform.position.y)).normalized; // Assuming transform.position is the center of the planet
+                Quaternion rotation = Quaternion.FromToRotation(Vector3.up, upDirection);
+                GameObject groundTile = Instantiate(!isCoreLayer ? GROUND_TILE_PREFAB : CORE_TILE_PREFAB, position, rotation, this.transform);
                 stackList[spoke].Push(groundTile);
+                _layers[layer].Add(groundTile);
             }
+        }
+
+        // decorate
+        foreach (GameObject ground in _layers[NUM_LAYERS - 1])
+        {
+            if (Random.value > DECORATION_DENSITY)
+            {
+                continue;
+            }
+            // rotation
+            Vector3 upDirection = (ground.transform.position - transform.position).normalized; // Assuming transform.position is the center of the planet
+            Quaternion rotation = Quaternion.FromToRotation(Vector3.up, upDirection);
+            // position
+            SpriteRenderer groundRenderer = ground.GetComponent<SpriteRenderer>();
+            SpriteRenderer decorationRenderer = DECORATION_PREFAB.GetComponent<SpriteRenderer>();
+            float buffer = 2f / groundRenderer.sprite.pixelsPerUnit;
+            Vector3 groundTopPosition = ground.transform.position + ground.transform.up * (groundRenderer.bounds.extents.y + decorationRenderer.bounds.extents.y - buffer);
+            Instantiate(DECORATION_PREFAB, groundTopPosition, rotation, ground.transform);
         }
     }
 
