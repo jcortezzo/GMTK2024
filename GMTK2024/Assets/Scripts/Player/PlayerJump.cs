@@ -80,6 +80,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Core")
         {
+            if(gameObject == null) return;
             StartCoroutine(StartGroundTimer());
         }
     }

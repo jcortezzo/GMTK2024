@@ -18,15 +18,20 @@ public class PlayerStat : MonoBehaviour
     public int[] CameraLevelUpScale = { 16, 14, 12, 10, 8, 6 };
     public int[] MinJumpScale = { 5, 6, 7, 8, 9, 10 };
     public int[] MaxJumpScale = { 20, 25, 30, 35, 40, 50 };
+    public int[] FontSizeMin = { 40, 40, 40, 60, 60, 60 };
+    public int[] FontSizeMax = { 60, 60, 60, 80, 80, 80 };
 
     private PixelPerfectCamera ppCamera;
     private PlayerJump playerJump;
+    private TextSpawner playerTextSpawner;
 
     private void Start()
     {
         Level = 1;
         ppCamera = Camera.main.gameObject.GetComponent<PixelPerfectCamera>();
         playerJump = GetComponent<PlayerJump>();
+        playerTextSpawner = GetComponent<TextSpawner>();
+
     }
     public void Damage(int amount)
     {
@@ -54,6 +59,7 @@ public class PlayerStat : MonoBehaviour
         LevelUpScale();
         LevelUpCamera();
         LevelUpJump();
+        LevelUpText();
     }
     private void LevelUpScale()
     {
@@ -72,6 +78,12 @@ public class PlayerStat : MonoBehaviour
         playerJump.MinJumpForce = minJumpVal;
         playerJump.MaxJumpForce= maxJumpVal;
 
+    }
+
+    private void LevelUpText()
+    {
+        playerTextSpawner.MinTextSize = FontSizeMin[Level];
+        playerTextSpawner.MaxTextSize = FontSizeMax[Level];
     }
     private int GetNumberOfGroundForNextLevel()
     {

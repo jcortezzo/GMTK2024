@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -36,6 +34,8 @@ public class Planet : MonoBehaviour
         PlayerOnPlanetEvent.AddListener(GenerateNeighborPlanets);
 
         InitParticleSystem();
+        _particleSystem.Play();
+        _ringParticleSystem.Play();
     }
 
     public void FreezePeople()
