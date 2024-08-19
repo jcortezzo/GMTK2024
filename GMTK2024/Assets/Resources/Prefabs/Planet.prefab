@@ -63,7 +63,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GROUND_TILE_PREFAB: {fileID: 2674713971603107932, guid: cac94f595416f394f8557677e3da3ae9, type: 3}
+  CORE_TILE_PREFAB: {fileID: 2674713971603107932, guid: 3df4de2403fe86a479f755367e63221f, type: 3}
   <Radius>k__BackingField: 10
+  <CoreRatio>k__BackingField: 0.2
   NUM_SPOKES: 64
   NUM_LAYERS: 18
 --- !u!58 &2546388146433021384

@@ -9,7 +9,11 @@ public class PlayerMovement : MonoBehaviour
 
     // TODO: Set planetGenerator based on distance from/force on player
     [SerializeField]
-    private GameObject _planet;
+    private GameObject _currPlanet;
+    public GameObject CurrPlanet
+    {
+        get { return _currPlanet; }
+    }
 
     private Rigidbody2D _rb;
 
@@ -53,13 +57,21 @@ public class PlayerMovement : MonoBehaviour
 
     public void HandleMovement(float delta, Vector2 movement)
     {
+        if (_currPlanet == null)
+        {
+            movement = Vector2.zero;
+        }
+
         // don't move while switching planets
         if (_isPlanetRotateTween)
         {
             return;
         }
 
-        this.transform.up = (this.transform.position - _planet.transform.position).normalized;
+        if (_currPlanet != null)
+        {
+            this.transform.up = (this.transform.position - _currPlanet.transform.position).normalized;
+        }
 
         // Keep original Y velocity
         Vector2 currentVelocityWorldSpace = _rb.velocity;
@@ -74,19 +86,19 @@ public class PlayerMovement : MonoBehaviour
         _rb.velocity = finalMovementWorldSpace;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Planet" && collision.gameObject != _planet && _playerManager.IsJumping && _canSwitchPlanet)
+        if (collision.gameObject.tag == "Planet" && collision.gameObject != _currPlanet && _playerManager.IsJumping && _canSwitchPlanet)
         {
-            var originalUp = _planet.transform.position - transform.position;
+            var originalUp = _currPlanet.transform.position - transform.position;
 
             Debug.Log($"Collied with planet {collision.name}");
             var newPlanet = collision.gameObject;
 
-            _planet.GetComponent<PointEffector2D>().enabled = false;
+            _currPlanet.GetComponent<PointEffector2D>().enabled = false;
             newPlanet.GetComponent<PointEffector2D>().enabled = true;
 
-            _planet = newPlanet;
+            _currPlanet = newPlanet;
             _canSwitchPlanet = false;
 
             Vector3 newUp = newPlanet.transform.position - transform.position;
@@ -101,6 +113,16 @@ public class PlayerMovement : MonoBehaviour
             );
             _isPlanetRotateTween = true;
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag != "Planet" || collision.gameObject != _currPlanet)
+        {
+            return;
+        }
+
+        _currPlanet = null;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
