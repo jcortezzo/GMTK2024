@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
-    [field:SerializeField]
+    [field: SerializeField]
     public int Health { get; private set; }
     [field: SerializeField]
     public int GroundEaten { get; private set; }
@@ -28,8 +28,7 @@ public class PlayerStat : MonoBehaviour
     private void Update()
     {
         var nextLevelGroundCount = GetNumberOfGroundForNextLevel();
-        Debug.Log(nextLevelGroundCount);
-        if(GroundEaten >= nextLevelGroundCount)
+        if (GroundEaten >= nextLevelGroundCount)
         {
             LevelUp();
         }
