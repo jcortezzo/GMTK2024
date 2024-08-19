@@ -83,6 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bec167cb1c82bb043a70d3eadc192041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerMovement: {fileID: 0}
 --- !u!114 &867583880993797841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f4b66270bde86342a055c455f1cea57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetGenerator: {fileID: 0}
+  _currPlanet: {fileID: 0}
   laserPrefab: {fileID: 0}
   speed: 5
   jumpForce: 10
@@ -130,6 +131,7 @@ MonoBehaviour:
   _eatFrequencyS: 0.75
   _eatBoxPosition: {fileID: 7643220167611068552}
   EAT_BOX_PREFAB: {fileID: 2669237376413300249, guid: 628c211aef6e7714584c1dc3eaebace8, type: 3}
+  BONK_THRESHOLD: -0.6
 --- !u!95 &1211027230587705839
 Animator:
   serializedVersion: 5

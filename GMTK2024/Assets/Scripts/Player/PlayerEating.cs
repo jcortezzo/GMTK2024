@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening.Core;
 using UnityEngine;
 
 public class PlayerEating : MonoBehaviour
@@ -18,6 +19,9 @@ public class PlayerEating : MonoBehaviour
 
     [SerializeField]
     private GameObject EAT_BOX_PREFAB;
+
+    [SerializeField]
+    private float BONK_THRESHOLD;
 
     void Start()
     {
@@ -60,5 +64,20 @@ public class PlayerEating : MonoBehaviour
         if (_eatRoutine != null) StopCoroutine(_eatRoutine);
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            foreach (ContactPoint2D point in collision.contacts)
+            {
+                var dot = Vector2.Dot(point.normal, this.transform.up);
+                Debug.Log(dot);
+                if (dot <= BONK_THRESHOLD)
+                {
+                    _playerManager.PlayerStat.EatGround();
+                    Destroy(collision.gameObject);
+                }
+            }
+        }
+    }
 }

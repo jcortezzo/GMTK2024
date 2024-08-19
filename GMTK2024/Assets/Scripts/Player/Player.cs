@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
         get { return !_playerJump.IsGround && _playerJump.HasJumped; }
     }
 
+    public GameObject CurrPlanet { get { return _playerMovement.CurrPlanet; } }
+
     private void Awake()
     {
         JumpSquat = new UnityEvent();
