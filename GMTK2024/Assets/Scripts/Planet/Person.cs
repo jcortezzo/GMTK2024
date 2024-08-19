@@ -20,6 +20,9 @@ public class Person : MonoBehaviour
     private State _state;
     private Rigidbody2D _rb;
 
+    [SerializeField]
+    private GameObject SPLAT_PREFAB;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,6 +87,19 @@ public class Person : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if (collision.gameObject.tag == "Splatter")
+        {
+            var rb = collision.gameObject.GetComponent<Rigidbody2D>();
+            if (rb == null)
+            {
+                return;
+            }
+            if (rb.velocity.magnitude < 2)
+            {
+                return;
+            }
+            Destroy(this.gameObject);
+        }
     }
 
     void OnDestroy()
@@ -92,6 +108,8 @@ public class Person : MonoBehaviour
         {
             StopCoroutine(_changeStateRoutine);
         }
+        var splat = Instantiate(SPLAT_PREFAB, transform.position, Quaternion.Euler(0, 0, Random.Range(0f, 360f)), null);
+        Destroy(splat.gameObject, 30f);
     }
 
     private enum State

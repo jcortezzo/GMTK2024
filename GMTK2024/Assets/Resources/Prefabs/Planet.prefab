@@ -72,7 +72,7 @@ MonoBehaviour:
   NUM_SPOKES: 64
   NUM_LAYERS: 18
   DECORATION_DENSITY: 0.2
-  POPULATION_DENSITY: 0.1
+  POPULATION_DENSITY: 0.3
   <Radius>k__BackingField: 10
   <CoreRatio>k__BackingField: 0.2
   <GeneratePlanetOnStart>k__BackingField: 0

@@ -131,7 +131,7 @@ public class PlayerMovement : MonoBehaviour
         {
             _canSwitchPlanet = true;
             collision.gameObject.GetComponentInParent<Planet>().PlayerOnPlanetEvent.Invoke();
-            _currPlanet.GetComponent<Planet>().UnfreezePeople();
+            _currPlanet?.GetComponent<Planet>()?.UnfreezePeople();
         }
     }
 }
