@@ -64,10 +64,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GROUND_TILE_PREFAB: {fileID: 2674713971603107932, guid: cac94f595416f394f8557677e3da3ae9, type: 3}
   CORE_TILE_PREFAB: {fileID: 2674713971603107932, guid: 3df4de2403fe86a479f755367e63221f, type: 3}
-  <Radius>k__BackingField: 10
-  <CoreRatio>k__BackingField: 0.2
+  DECORATION_PREFAB: {fileID: 3539224361767754966, guid: 42199a4b2e57ee44ab5376a1a9b5b198, type: 3}
   NUM_SPOKES: 64
   NUM_LAYERS: 18
+  DECORATION_DENSITY: 0.2
+  <Radius>k__BackingField: 10
+  <CoreRatio>k__BackingField: 0.2
 --- !u!58 &2546388146433021384
 CircleCollider2D:
   m_ObjectHideFlags: 0
