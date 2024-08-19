@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Planet : MonoBehaviour
 {
+    public bool AllowNeighborPlanetGeneration { get; set; }
+    public UnityEvent PlayerOnPlanetEvent;
+
     private CircleCollider2D _cc2d;
     private PlanetGenerator _planetGenerator;
     private ParticleSystem _particleSystem;
@@ -28,8 +32,19 @@ public class Planet : MonoBehaviour
         _ringParticleSystem = child.GetComponent<ParticleSystem>();
 
         _cc2d.radius = _planetGenerator.Radius * 2;
+        PlayerOnPlanetEvent = new UnityEvent();
+        PlayerOnPlanetEvent.AddListener(GenerateNeighborPlanets);
 
         InitParticleSystem();
+    }
+
+    private void GenerateNeighborPlanets()
+    {
+        if (!AllowNeighborPlanetGeneration) return;
+        // code for generate neighbor planets
+        // generate 3 planets
+        PlanetProcedureGeneration.Instance.GeneratePlanet(this);
+        AllowNeighborPlanetGeneration = false;
     }
 
     private void InitParticleSystem()
