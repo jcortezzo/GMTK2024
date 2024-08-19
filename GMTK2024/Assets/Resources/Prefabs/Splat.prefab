@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2610862811865749641}
   - component: {fileID: -5953874787711949610}
+  - component: {fileID: 6270759690149645784}
   m_Layer: 0
   m_Name: Splat
   m_TagString: Untagged
@@ -70,10 +71,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1562618763
+  m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8767ac3cd103bd04e8c95559a527bd85, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e9d66d02cea5624684722ff8e7b99c4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -84,3 +85,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 1
   m_SpriteSortPoint: 0
+--- !u!114 &6270759690149645784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5336228111516434432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c294deeb5a7e7374a8cbdf4469c2083b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameGlobal: {fileID: 11400000, guid: ee1a4e0dbe6d79949b7d91c996e7dbce, type: 2}
+  RatedRSpat: {fileID: 21300000, guid: 198ace801041de84688167aafd869732, type: 3}

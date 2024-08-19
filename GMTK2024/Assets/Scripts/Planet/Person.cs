@@ -22,7 +22,6 @@ public class Person : MonoBehaviour
 
     [SerializeField]
     private GameObject SPLAT_PREFAB;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -85,7 +84,8 @@ public class Person : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Destroy(this.gameObject);
+            var level = collision.gameObject.GetComponent<PlayerStat>().Level;
+            if(level > 1) Destroy(this.gameObject);
         }
         if (collision.gameObject.tag == "Splatter")
         {
