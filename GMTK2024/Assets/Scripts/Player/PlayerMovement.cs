@@ -109,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             _canSwitchPlanet = true;
+            _planet.GetComponent<Effector2D>().enabled = true;
         }
     }
 }
