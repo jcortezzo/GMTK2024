@@ -40,12 +40,15 @@ public class PostGameUI : MonoBehaviour
 
     public float UniverseConsumedPercentage()
     {
+        if (gameGlobal.GroundInUniverse == 0) return -1;
         return ((float)playerStat.GroundEaten / gameGlobal.GroundInUniverse) * 100;
     }
 
     public void RestartLevel()
     {
         gameGlobal.ResestVariable();
+        winPanel.SetActive(false);
+        deadPanel.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

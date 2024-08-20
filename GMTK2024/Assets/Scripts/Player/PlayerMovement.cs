@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     private float normalDOF = 10;
     private float minDOF = 0.1f;
 
+    bool isDeadSoundPlayed;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,6 +82,8 @@ public class PlayerMovement : MonoBehaviour
             if (deathTimer <= 0)
             {
                 Debug.Log("Death");
+                if (!isDeadSoundPlayed) Jukebox.Instance.PlaySFX("Death");
+                isDeadSoundPlayed = true;
                 _playerManager.PlayerStat.IsDead = true;
                 _playerManager.IsDead = true;
                 _rb.bodyType = RigidbodyType2D.Static;
