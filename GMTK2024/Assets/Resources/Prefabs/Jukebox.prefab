@@ -51,4 +51,29 @@ MonoBehaviour:
     volume: 0.15
     pitch: 1
     loop: 1
-  sfxs: []
+  sfxs:
+  - clip: {fileID: 8300000, guid: 7bc884f0738403549a0ec09fd165e1da, type: 3}
+    name: Jump
+    volume: 1
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: 112f6760bce6df14ba808825b52f964d, type: 3}
+    name: Swap
+    volume: 1
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: 07761f44f61094944ae18b38b8428944, type: 3}
+    name: Zap
+    volume: 1
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: 73b4fc2bdfc457f42b380cd195f68bd7, type: 3}
+    name: Death
+    volume: 1
+    pitch: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: 86618e2ef7042e54f8554bc7d69664ca, type: 3}
+    name: Eat
+    volume: 1
+    pitch: 1
+    loop: 0

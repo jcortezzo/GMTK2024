@@ -68,6 +68,8 @@ public class PlayerJump : MonoBehaviour
 
         _isGroundTimer = 0;
         HasJumped = true;
+
+        Jukebox.Instance.PlaySFX("Jump");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -83,7 +85,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Core")
         {
-            if(gameObject == null) return;
+            if (gameObject == null) return;
             StartCoroutine(StartGroundTimer());
         }
     }

@@ -131,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             );
             _isPlanetRotateTween = true;
+            Jukebox.Instance.PlaySFX("Swap");
         }
     }
 

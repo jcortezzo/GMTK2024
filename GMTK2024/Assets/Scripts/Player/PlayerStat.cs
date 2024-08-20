@@ -14,13 +14,13 @@ public class PlayerStat : MonoBehaviour
     [field: SerializeField]
     public int Level { get; private set; }
 
-    public int MAX_LEVEL = 7;
-    public int[] GroundForNextLevel = { 20, 100, 200, 500, 1000, 2000, 3000 };
-    public int[] CameraLevelUpScale = { 16, 14, 12, 10, 8, 6, 5 };
-    public int[] MinJumpScale = { 5, 6, 7, 8, 9, 10, 11 };
-    public int[] MaxJumpScale = { 20, 25, 30, 35, 40, 50, 55 };
-    public int[] FontSizeMin = { 40, 40, 40, 60, 60, 60, 70 };
-    public int[] FontSizeMax = { 60, 60, 60, 80, 80, 80, 80 };
+    public int MAX_LEVEL = 10;
+    public int[] GroundForNextLevel = { 30, 150, 300, 500, 1000, 2000, 3000, 4000, 5000, 6000 };
+    public int[] CameraLevelUpScale = { 16, 14, 12, 10, 8, 6, 5, 4, 3, 3 };
+    public int[] MinJumpScale = { 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
+    public int[] MaxJumpScale = { 20, 25, 30, 35, 40, 50, 55, 60, 65, 70 };
+    public int[] FontSizeMin = { 40, 40, 40, 60, 60, 60, 70, 70, 70, 70 };
+    public int[] FontSizeMax = { 60, 60, 60, 80, 80, 80, 80, 80, 80, 80 };
 
     private PixelPerfectCamera ppCamera;
     private PlayerJump playerJump;
