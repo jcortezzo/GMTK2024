@@ -45,6 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Minimap
+    uniqueID: 1450934103
+    locked: 0
   - name: Decoration
     uniqueID: 1562618763
     locked: 0

@@ -11,6 +11,12 @@ public class Planet : MonoBehaviour
     private PlanetGenerator _planetGenerator;
     private ParticleSystem _particleSystem;
     private ParticleSystem _ringParticleSystem;
+    private Color _planetColor;
+
+    [SerializeField]
+    private GameObject MINIMAP_ICON_PREFAB;
+    [SerializeField]
+    private GameObject MINIMAP_RING_PREFAB;
 
     private static Color[] _colors = new Color[]
     {
@@ -36,6 +42,8 @@ public class Planet : MonoBehaviour
         InitParticleSystem();
         _particleSystem.Play();
         _ringParticleSystem.Play();
+
+        SpawnMinimapCircle();
     }
 
     public void FreezePeople()
@@ -63,13 +71,33 @@ public class Planet : MonoBehaviour
         shape.shapeType = ParticleSystemShapeType.Circle;
         shape.radius = _cc2d.radius;
         var main = _particleSystem.main;
-        main.startColor = _colors.OrderBy(c => Random.value).First();
+        _planetColor = _colors.OrderBy(c => Random.value).First();
+        main.startColor = _planetColor;
 
         var outerShape = _ringParticleSystem.shape;
         outerShape.shapeType = ParticleSystemShapeType.Circle;
         outerShape.radius = _cc2d.radius;
         var outerMain = _ringParticleSystem.main;
         outerMain.startColor = Color.white;
+    }
+
+    void SpawnMinimapCircle()
+    {
+        GameObject minimapCircle = Instantiate(MINIMAP_ICON_PREFAB, transform.position, Quaternion.identity, null);
+        minimapCircle.transform.localScale = Vector3.one * _planetGenerator.Radius * 2f;
+        SpriteRenderer minimapRenderer = minimapCircle.GetComponent<SpriteRenderer>();
+        if (minimapRenderer != null)
+        {
+            minimapRenderer.color = _planetColor;
+        }
+
+        GameObject minimapRing = Instantiate(MINIMAP_RING_PREFAB, transform.position, Quaternion.identity, null);
+        minimapRing.transform.localScale = Vector3.one * _cc2d.radius * 2f;
+        minimapRenderer = minimapRing.GetComponent<SpriteRenderer>();
+        if (minimapRenderer != null)
+        {
+            minimapRenderer.color = _planetColor;
+        }
     }
 
     static Color HexToColor(string hex)
