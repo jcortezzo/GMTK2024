@@ -297,7 +297,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &63029017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -607,6 +607,11 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!20 &519420039 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3254189787571242375, guid: d602123d9e6cd3c40b3902e6081fd783, type: 3}
+  m_PrefabInstance: {fileID: 3781008736549416813}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &706039523
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1183,6 +1188,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1118445300879264553, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420039}
     - target: {fileID: 1893734588472889880, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
       propertyPath: m_Name
       value: CanvasUI

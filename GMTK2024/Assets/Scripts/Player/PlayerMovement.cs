@@ -36,6 +36,10 @@ public class PlayerMovement : MonoBehaviour
 
     private Tweener _planetRotationTween;
     private bool _isPlanetRotateTween;
+    private Coroutine _playerDeath;
+    private float deathTimer = 5f;
+    [SerializeField]
+    private float TIME_TILL_DEATH = 5F;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +49,22 @@ public class PlayerMovement : MonoBehaviour
         // Default playback speed is 1, which is too fast for the idle animation
         _animator.speed = animationSpeed;
         _playerManager = GetComponent<Player>();
+    }
+
+    void Update()
+    {
+        if (_currPlanet == null)
+        {
+            deathTimer -= Time.deltaTime;
+            if (deathTimer <= 0)
+            {
+                Debug.Log("Death");
+            }
+        }
+        else
+        {
+            deathTimer = TIME_TILL_DEATH;
+        }
     }
 
     public void HandleMovement(float delta, Vector2 movement)
