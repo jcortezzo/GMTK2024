@@ -13,9 +13,9 @@ public class PlayerStat : MonoBehaviour
     public int GroundEaten { get; private set; }
     [field: SerializeField]
     public int Level { get; private set; }
-    
+
     public int MAX_LEVEL = 7;
-    public int[] GroundForNextLevel = { 20, 100, 200, 500, 1000, 2000, 3000};
+    public int[] GroundForNextLevel = { 20, 100, 200, 500, 1000, 2000, 3000 };
     public int[] CameraLevelUpScale = { 16, 14, 12, 10, 8, 6, 5 };
     public int[] MinJumpScale = { 5, 6, 7, 8, 9, 10, 11 };
     public int[] MaxJumpScale = { 20, 25, 30, 35, 40, 50, 55 };
@@ -65,7 +65,10 @@ public class PlayerStat : MonoBehaviour
     }
     private void LevelUpScale()
     {
+        var mmIcon = transform.Find("MinimapIcon");
+        mmIcon.parent = null;
         transform.localScale = new Vector3(Level, Level, Level);
+        mmIcon.parent = this.transform;
     }
     private void LevelUpCamera()
     {
@@ -80,7 +83,7 @@ public class PlayerStat : MonoBehaviour
         var minJumpVal = MinJumpScale[Level];
         var maxJumpVal = MaxJumpScale[Level];
         playerJump.MinJumpForce = minJumpVal;
-        playerJump.MaxJumpForce= maxJumpVal;
+        playerJump.MaxJumpForce = maxJumpVal;
 
     }
 

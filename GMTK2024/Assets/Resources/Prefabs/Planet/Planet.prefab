@@ -53,6 +53,8 @@ MonoBehaviour:
   PlayerOnPlanetEvent:
     m_PersistentCalls:
       m_Calls: []
+  MINIMAP_ICON_PREFAB: {fileID: 5233005486659464112, guid: ca58d818bb8df2947b45757e81475996, type: 3}
+  MINIMAP_RING_PREFAB: {fileID: 5233005486659464112, guid: 8e95409c583ae3a4aa5daf2549857cb8, type: 3}
 --- !u!114 &801425269493458839
 MonoBehaviour:
   m_ObjectHideFlags: 0
