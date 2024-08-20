@@ -43,7 +43,10 @@ public class PlayerJump : MonoBehaviour
             _jumpSquatTimer += Time.deltaTime;
         }
     }
-
+    public float GetJumpSquatPercentage()
+    {
+        return Mathf.Min(1f, _jumpSquatTimer / _maxJumpTime);
+    }
     public void JumpSquat()
     {
         if (!IsGround && !_jumpSquat && HasJumped) return;
@@ -54,7 +57,7 @@ public class PlayerJump : MonoBehaviour
     {
         if (_jumpSquatTimer <= 0) return;
 
-        var jumpRatio = Mathf.Min(1f, _jumpSquatTimer / _maxJumpTime);
+        var jumpRatio = GetJumpSquatPercentage();
         var jumpForce = (MaxJumpForce - MinJumpForce) * jumpRatio + MinJumpForce;
         //Debug.Log($"Jump force {jumpForce}, jump ratio: {jumpRatio}");
         var jumpVec = _playerManager.transform.up;
