@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -40,6 +42,11 @@ public class PlayerMovement : MonoBehaviour
     private float deathTimer = 5f;
     [SerializeField]
     private float TIME_TILL_DEATH = 5F;
+    
+    [SerializeField] private PostProcessVolume pVolume;
+    private DepthOfField depthOfFieldEffect;
+    private float normalDOF = 10;
+    private float minDOF = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -49,12 +56,27 @@ public class PlayerMovement : MonoBehaviour
         // Default playback speed is 1, which is too fast for the idle animation
         _animator.speed = animationSpeed;
         _playerManager = GetComponent<Player>();
+
+        pVolume.profile.TryGetSettings(out depthOfFieldEffect);
+        depthOfFieldEffect.focusDistance.value = normalDOF;
+
+    }
+    public float Remap(float value, float from1, float to1, float from2, float to2)
+    {
+        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
 
     void Update()
     {
         if (_currPlanet == null)
         {
+            var currentFD = depthOfFieldEffect.focusDistance;
+            var deathTimePercentage = deathTimer / TIME_TILL_DEATH;
+            Debug.Log(deathTimePercentage);
+            var newFD = normalDOF * deathTimePercentage;
+            newFD = Mathf.Max(minDOF, newFD);
+            depthOfFieldEffect.focusDistance.value = newFD;
+
             deathTimer -= Time.deltaTime;
             if (deathTimer <= 0)
             {
@@ -63,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            depthOfFieldEffect.focusDistance.value = normalDOF;
             deathTimer = TIME_TILL_DEATH;
         }
     }
