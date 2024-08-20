@@ -13,8 +13,10 @@ public class Player : MonoBehaviour
     protected Planet _currPlanet;
 
     public bool IsEating { get; private set; }
+    public bool IsDead { get; set;}
     public UnityEvent JumpSquat { get; private set; }
     public UnityEvent JumpRelease { get; private set; }
+
     public bool IsJumping
     {
         get { return !_playerJump.IsGround && _playerJump.HasJumped; }

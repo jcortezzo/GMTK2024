@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         {
             var currentFD = depthOfFieldEffect.focusDistance;
             var deathTimePercentage = deathTimer / TIME_TILL_DEATH;
-            Debug.Log(deathTimePercentage);
+            //Debug.Log(deathTimePercentage);
             var newFD = normalDOF * deathTimePercentage;
             newFD = Mathf.Max(minDOF, newFD);
             depthOfFieldEffect.focusDistance.value = newFD;
@@ -81,6 +81,9 @@ public class PlayerMovement : MonoBehaviour
             if (deathTimer <= 0)
             {
                 Debug.Log("Death");
+                _playerManager.PlayerStat.IsDead = true;
+                _playerManager.IsDead = true;
+                _rb.bodyType = RigidbodyType2D.Static;
             }
         }
         else
