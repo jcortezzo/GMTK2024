@@ -11,6 +11,11 @@ public class GameGlobal : ScriptableObject
     public void OnEnable()
     {
         GoreEnable = false;
+        ResestVariable();
+    }
+
+    public void ResestVariable()
+    {
         GroundInUniverse = 0;
     }
 }

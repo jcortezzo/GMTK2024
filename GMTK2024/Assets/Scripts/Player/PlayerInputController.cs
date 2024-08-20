@@ -8,14 +8,19 @@ public class PlayerInputController : MonoBehaviour
     PlayerControls _inputActions;
 
     private Player _playerManager;
+    public PostGameUI _postGame;
 
     public Vector2 MovementInput { get; private set; }
 
     public bool EatFlag { get; private set; }
+    private void Awake()
+    {
+        _playerManager = GetComponent<Player>();
+    }
 
     void Start()
     {
-        _playerManager = GetComponent<Player>();
+        
         MovementInput = Vector2.zero;
     }
 
@@ -37,6 +42,10 @@ public class PlayerInputController : MonoBehaviour
             #region Jump
             _inputActions.Player.Jump.performed += ctx => { _playerManager.JumpSquat.Invoke(); };
             _inputActions.Player.Jump.canceled += ctx => { _playerManager.JumpRelease.Invoke(); };
+            #endregion
+
+            #region Restart
+            _inputActions.Player.Restart.performed += ctx => { _postGame.RestartLevel(); };
             #endregion
         }
         _inputActions.Enable();

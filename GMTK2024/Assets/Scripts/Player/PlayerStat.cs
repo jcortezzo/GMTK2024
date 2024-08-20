@@ -14,6 +14,7 @@ public class PlayerStat : MonoBehaviour
     [field: SerializeField]
     public int Level { get; private set; }
 
+    public bool IsDead { get; set; }
     public int MAX_LEVEL = 10;
     public int[] GroundForNextLevel = { 30, 150, 300, 500, 1000, 2000, 3000, 4000, 5000, 6000 };
     public int[] CameraLevelUpScale = { 16, 14, 12, 10, 8, 6, 5, 4, 3, 3 };
