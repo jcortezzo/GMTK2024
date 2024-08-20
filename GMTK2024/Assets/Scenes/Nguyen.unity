@@ -1195,6 +1195,18 @@ PrefabInstance:
       propertyPath: _playerStat
       value: 
       objectReference: {fileID: 1259347498}
+    - target: {fileID: 2897218258729715542, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3354010776243837469, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -4.399994
+      objectReference: {fileID: 0}
+    - target: {fileID: 3773714932799201580, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4304837213082593211, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
       propertyPath: m_fontAsset
       value: 
@@ -1206,6 +1218,18 @@ PrefabInstance:
     - target: {fileID: 4304837213082593211, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953453935359659096, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953453935359659096, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
+      propertyPath: m_FillMethod
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5953453935359659096, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
+      propertyPath: m_FillOrigin
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6636767284643385918, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
       propertyPath: m_UiScaleMode
@@ -1234,6 +1258,14 @@ PrefabInstance:
     - target: {fileID: 8699548649825349060, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8849784201821563020, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -72.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8920440811416642150, guid: 0ca2e398afa22f441a33733ebf2236e9, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -6.200012
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
