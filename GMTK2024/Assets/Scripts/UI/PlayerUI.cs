@@ -24,7 +24,7 @@ public class PlayerUI : MonoBehaviour
         _healthTMP.text = $"Health: {_playerStat.Health}";
         _groundText.text = $"Ground: {_playerStat.GroundEaten}";
         var consumePercentage = ((float)_playerStat.GroundEaten / _gameGlobal.GroundInUniverse) * 100;
-        _universeConsumed.text = $"Consumed universe: {consumePercentage.ToString("0.00")}% ({_gameGlobal.GroundInUniverse})";
+        _universeConsumed.text = $"Universe Consumed {consumePercentage.ToString("0.00")}% ({_gameGlobal.GroundInUniverse})";
         _universeFill.fillAmount = (float)(100 - consumePercentage) / 100f;
     }
 }

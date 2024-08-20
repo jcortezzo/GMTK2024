@@ -63,6 +63,7 @@ public class PlayerStat : MonoBehaviour
         LevelUpCamera();
         LevelUpJump();
         LevelUpText();
+        Jukebox.Instance.PlaySFX("Level");
     }
     private void LevelUpScale()
     {

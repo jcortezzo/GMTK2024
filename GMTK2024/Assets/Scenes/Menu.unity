@@ -387,7 +387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Spacey Snacker
+  m_text: Cosmic Cravings
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ced62f70a4e76374caf5b328f2343b5d, type: 2}
   m_sharedMaterial: {fileID: 2057137194644679604, guid: ced62f70a4e76374caf5b328f2343b5d, type: 2}

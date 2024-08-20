@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Ground : MonoBehaviour
 {
@@ -32,7 +33,16 @@ public class Ground : MonoBehaviour
                         ? CapsuleDirection2D.Horizontal
                         : CapsuleDirection2D.Vertical;
                 }
-                Destroy(child.gameObject, 10f);
+                if (SceneManager.GetActiveScene().isLoaded)
+                {
+                    // Scene is not being reset, destroy after a delay
+                    Destroy(child.gameObject, 10f);
+                }
+                else
+                {
+                    // Scene is being reset, destroy immediately
+                    Destroy(child.gameObject);
+                }
             }
         }
     }

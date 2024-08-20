@@ -9,7 +9,7 @@ public class PostGameUI : MonoBehaviour
 {
     public PlayerStat playerStat;
     public GameGlobal gameGlobal;
-    
+
     public GameObject deadPanel;
     public GameObject winPanel;
     public TMP_Text planetConsumedText;
@@ -19,22 +19,23 @@ public class PostGameUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!universeConsumed) elaspedTime += Time.deltaTime;
+        if (!universeConsumed) elaspedTime += Time.deltaTime;
         if (playerStat.IsDead)
         {
             deadPanel.SetActive(true);
             winPanel.SetActive(false);
-        } else if(UniverseConsumedPercentage() >= 80)
+        }
+        else if (UniverseConsumedPercentage() >= 80)
         {
             universeConsumed = true;
             winPanel.SetActive(true);
-            planetConsumedText.text = $"You consumed 80% of planet in {Mathf.FloorToInt(elaspedTime)} seconds";
+            planetConsumedText.text = $"80% of the universe consumed in {Mathf.FloorToInt(elaspedTime)}s";
         }
     }
 
