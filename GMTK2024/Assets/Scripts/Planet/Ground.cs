@@ -20,7 +20,7 @@ public class Ground : MonoBehaviour
                 child.parent = null;
                 Rigidbody2D rb = child.gameObject.AddComponent<Rigidbody2D>();
                 rb.gravityScale = 0f;
-                rb.mass = 0.1f;
+                rb.mass = 0.5f;
                 CapsuleCollider2D collider = child.gameObject.AddComponent<CapsuleCollider2D>();
                 SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
                 if (spriteRenderer != null)

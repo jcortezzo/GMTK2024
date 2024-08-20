@@ -29,7 +29,7 @@ public class PlayerEating : MonoBehaviour
         _playerManager = GetComponent<Player>();
         textBubble = GetComponent<TextSpawner>();
         _eatRoutine = StartCoroutine(EatRoutine());
-        
+
     }
 
     public void StartEating()
@@ -78,7 +78,6 @@ public class PlayerEating : MonoBehaviour
             foreach (ContactPoint2D point in collision.contacts)
             {
                 var dot = Vector2.Dot(point.normal, this.transform.up);
-                //Debug.Log(dot);
                 if (dot <= BONK_THRESHOLD)
                 {
                     _playerManager.PlayerStat.EatGround();
