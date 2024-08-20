@@ -85,7 +85,7 @@ public class Person : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             var level = collision.gameObject.GetComponent<PlayerStat>().Level;
-            if(level > 1) Destroy(this.gameObject);
+            if (level > 1) Destroy(this.gameObject);
         }
         if (collision.gameObject.tag == "Splatter")
         {
@@ -110,6 +110,7 @@ public class Person : MonoBehaviour
         }
         if (!this.gameObject.scene.isLoaded) return;
         var splat = Instantiate(SPLAT_PREFAB, transform.position, Quaternion.Euler(0, 0, Random.Range(0f, 360f)), null);
+        Jukebox.Instance.PlaySFX("Jump");
         Destroy(splat.gameObject, 30f);
     }
 

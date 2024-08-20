@@ -55,6 +55,7 @@ public class PlayerEating : MonoBehaviour
                 _eatCollider.transform.position = _eatBoxPosition.position;
                 _eatCollider.transform.localScale = _playerManager.transform.localScale;
                 playerAte = true;
+                Jukebox.Instance.PlaySFX("Eat");
                 yield return new WaitForSeconds(0.1f);
             }
             _eatCollider.SetActive(false);
